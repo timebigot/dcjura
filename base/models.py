@@ -16,7 +16,8 @@ class Coupon(models.Model):
     title = models.CharField(max_length=50)
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
     about = models.CharField(max_length=100)
-    expire_date = models.CharField(max_length=20)
+    exp_date = models.CharField(max_length=20)
+    url_code = models.CharField(max_length=7)
     is_void = models.BooleanField(default=0)
 
     def __str__(self):
