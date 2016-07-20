@@ -1,2 +1,17 @@
-body {
+.header {
+    margin-bottom: 15px;
+}
+
+.card-img-top {
+    width: 100%;
+}
+.coupon-body {
+    border-style: dashed;
+    margin: 10px;
+}
+.media-img {
+    width: 50px;
+}
+.coupon-fine-print {
+    font-size: 10px;
 }

@@ -6,43 +6,54 @@ DCjura
 {% block content %}
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<ul class="list-group">
-				<li class="list-group-item">
-					<div class="media">
-						<div class="media-left media-middle">
-							<a href="#" data-toggle="modal" data-target="#myModal">
-								<img class="media-object" data-src="..." alt="Generic placeholder image">
-							</a>
-						</div>
-						<div class="media-body">
-							<h2 class="media-heading">Media heading</h2>
-						</div>
-					</div>
-				</li>	
-			</ul>
-		</div>	
-	</div>		
+    <div class="row">
+        <div class="col-md-3 col-xs-6">
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#couponModal">
+                    <img class="card-img-top" src="http://www.ambassadororganics.com/wordpress/wp-content/uploads/2015/08/amazon-logo.png" alt="image">
+                </a>
+                <div class="card-block">
+                    <a href="#" data-toggle="modal" data-target="#couponModal">
+                        <h5>10% off all shoes!</h5>
+                    </a>
+                    <p class="text-muted">Amazon</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">장원반점</h4>
-			</div>
-			<div class="modal-body">
-				<img src"" class="img-responsive">
-				<h1>Yo buy one get one free 15%off</h1>
-			</div>
-			<div class="modal-footer">
-				<label>Share</label>
-				<input type="text" value="www.dcjura.com">
-			</div>
-		</div>
-	</div>
+
+<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">10% off all shoes! - Amazon</h4>
+            </div>
+            <div class="modal-body coupon-body">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <img class="media-img" src="http://www.ambassadororganics.com/wordpress/wp-content/uploads/2015/08/amazon-logo.png" alt="image">
+                    </div>
+                    <div class="media-body">
+                        <h1 class="media-heading">10% off all shoes</h1>
+                    </div>
+                </div>
+                <p class="coupon-fine-print">
+                Lorem ipsum dolor sit amet, prima verear mediocrem vel id, has autem epicurei reformidans ex. Mel ut novum partiendo. Duis dictas elaboraret his eu, quo ad modo tota scripserit, sumo tollit an est. Ad has illum commodo, vis te veritus sapientem corrumpit. Vis libris feugait contentiones ne, id per cetero fuisset.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="share-link">Share</label>
+                        <input type="text" class="form-control" id="share" value="https://dcjura.com/j3KopL4">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>			
 {% endblock %}
