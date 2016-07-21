@@ -3,9 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from base.models import *
 
 def index(request):
-    return render(request, 'index.html')
+    coupons = Coupons.objects.all()
+    return render(request, 'index.html', {'coupons': coupons})
 
 def join(request):
     if request.user.is_authenticated():

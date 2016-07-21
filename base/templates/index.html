@@ -7,6 +7,7 @@ DCjura
 
 <div class="container">
     <div class="row">
+        {% for coupon in coupons %}
         <div class="col-md-3 col-xs-6">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#couponModal">
@@ -14,12 +15,13 @@ DCjura
                 </a>
                 <div class="card-block">
                     <a href="#" data-toggle="modal" data-target="#couponModal">
-                        <h5>10% off all shoes!</h5>
+                        <h5>{{ coupon.title }}</h5>
                     </a>
-                    <p class="text-muted">Amazon</p>
+                    <p class="text-muted">{{ coupon.business.name }}</p>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 
