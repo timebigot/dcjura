@@ -94,7 +94,6 @@ ENV/
 # mac trash
 .DS_Store
 
-
 # windows trash
  Thumbs.db
 
@@ -102,3 +101,6 @@ ENV/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# secret
+settings.py
