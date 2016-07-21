@@ -17,7 +17,7 @@ class Coupon(models.Model):
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
     exp_date = models.CharField(max_length=20, blank=True)
     url_code = models.CharField(max_length=7)
-    is_void = models.BooleanField(default=0)
+    is_void = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

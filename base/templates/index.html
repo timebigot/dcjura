@@ -10,11 +10,11 @@ DCjura
         {% for coupon in coupons %}
         <div class="col-md-3 col-xs-6">
             <div class="card">
-                <a href="#" data-toggle="modal" data-target="#couponModal">
+                <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}">
                     <img class="card-img-top" src="http://www.ambassadororganics.com/wordpress/wp-content/uploads/2015/08/amazon-logo.png" alt="image">
                 </a>
                 <div class="card-block">
-                    <a href="#" data-toggle="modal" data-target="#couponModal">
+                    <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}">
                         <h5>{{ coupon.title }}</h5>
                     </a>
                     <p class="text-muted">{{ coupon.business.name }}</p>
@@ -32,7 +32,7 @@ DCjura
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">10% off all shoes! - Amazon</h4>
+                <h4 class="modal-title coupon-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body coupon-body">
                 <div class="media">
@@ -40,7 +40,7 @@ DCjura
                         <img class="media-img" src="http://www.ambassadororganics.com/wordpress/wp-content/uploads/2015/08/amazon-logo.png" alt="image">
                     </div>
                     <div class="media-body">
-                        <h1 class="media-heading">10% off all shoes</h1>
+                        <h1 class="media-heading coupon-title"></h1>
                     </div>
                 </div>
                 <p class="coupon-fine-print">
@@ -51,7 +51,7 @@ DCjura
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="share-link">Share</label>
-                        <input type="text" class="form-control" id="share" value="https://dcjura.com/j3KopL4">
+                        <input type="text" class="form-control" id="share" value="https://dcjura.com/">
                     </div>
                 </form>
             </div>

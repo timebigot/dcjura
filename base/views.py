@@ -6,7 +6,7 @@ from django.contrib import messages
 from base.models import *
 
 def index(request):
-    coupons = Coupons.objects.all()
+    coupons = Coupon.objects.all()
     return render(request, 'index.html', {'coupons': coupons})
 
 def join(request):
