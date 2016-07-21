@@ -99,3 +99,4 @@ Thumbs.db
 
 # secret
 settings.py
+db.sqlite3
