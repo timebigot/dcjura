@@ -95,12 +95,7 @@ ENV/
 .DS_Store
 
 # windows trash
- Thumbs.db
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+Thumbs.db
 
 # secret
-settings.py
+dcjura/settings.py
