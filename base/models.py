@@ -4,8 +4,8 @@ from django.conf import settings
 class Business(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
-    email = models.EmailField(max_length=100)
-    owner = models.CharField(max_length=30)
+    email = models.EmailField(max_length=100, blank=True)
+    owner = models.CharField(max_length=30, blank=True)
     address = models.CharField(max_length=100)
     is_active = models.BooleanField(default=1)
 
@@ -15,8 +15,7 @@ class Business(models.Model):
 class Coupon(models.Model):
     title = models.CharField(max_length=50)
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    about = models.CharField(max_length=100)
-    exp_date = models.CharField(max_length=20)
+    exp_date = models.CharField(max_length=20, blank=True)
     url_code = models.CharField(max_length=7)
     is_void = models.BooleanField(default=0)
 
