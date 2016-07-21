@@ -98,4 +98,4 @@ ENV/
 Thumbs.db
 
 # secret
-dcjura/settings.py
+settings.py
