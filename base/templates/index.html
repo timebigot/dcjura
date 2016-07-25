@@ -10,11 +10,25 @@ DCjura
         {% for coupon in coupons %}
         <div class="col-md-3 col-xs-6">
             <div class="card">
-                    <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}" data-urlcode="{{ coupon.url_code }}">
-                    <img class="card-img-top" src="http://icons.iconarchive.com/icons/seanau/flat-smiley/256/Smiley-22-icon.png" alt="image">
+                    <a href="#" 
+                        data-toggle="modal" 
+                        data-target="#couponModal" 
+                        data-title="{{ coupon.title }}" 
+                        data-bizname="{{ coupon.business.name }}" 
+                        data-bizaddress="{{ coupon.business.address }}" 
+                        data-urlcode="{{ coupon.url_code }}"
+                        >
+                        <img class="card-img-top" src="{{ coupon.cover }}" alt="{{ coupon.title }}">
                 </a>
                 <div class="card-block">
-                    <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}" data-urlcode="{{ coupon.url_code }}">
+                    <a href="#" 
+                        data-toggle="modal" 
+                        data-target="#couponModal" 
+                        data-title="{{ coupon.title }}" 
+                        data-bizname="{{ coupon.business.name }}" 
+                        data-bizaddress="{{ coupon.business.address }}" 
+                        data-urlcode="{{ coupon.url_code }}"
+                        >
                         <h5>{{ coupon.title }}</h5>
                     </a>
                     <p class="text-muted">{{ coupon.business.name }}</p>
