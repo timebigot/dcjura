@@ -1,6 +1,15 @@
 .header {
     margin-bottom: 15px;
 }
+.bg-danger {
+    color: #fff!important;
+    background-color: #CF000F!important;
+}
+.navbar-dark .navbar-brand {
+    color: #fff;
+    font-family: fantasy;
+    font-size: 39px;
+}
 
 .card-img-top {
     width: 100%;
@@ -14,4 +23,16 @@
 }
 .coupon-fine-print {
     font-size: 10px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #CF000F;
+}
+.copy {
+	color: black;
+	text-align: center;
 }
