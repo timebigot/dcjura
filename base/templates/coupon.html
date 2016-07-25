@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+DCjura
+{% endblock %}
+
+{% block content %}
+{% include 'coupon-modal.html' %}
+<script>
+    $('#couponModal').modal({backdrop:'static', keyboard:false, show:true});
+</script>
+{% endblock %}
