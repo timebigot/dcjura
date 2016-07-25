@@ -10,11 +10,25 @@ DCjura
         {% for coupon in coupons %}
         <div class="col-md-3 col-xs-6">
             <div class="card">
-                <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}">
-                    <img class="card-img-top" src="http://icons.iconarchive.com/icons/seanau/flat-smiley/256/Smiley-22-icon.png" alt="image">
+                    <a href="#" 
+                        data-toggle="modal" 
+                        data-target="#couponModal" 
+                        data-title="{{ coupon.title }}" 
+                        data-bizname="{{ coupon.business.name }}" 
+                        data-bizaddress="{{ coupon.business.address }}" 
+                        data-urlcode="{{ coupon.url_code }}"
+                        >
+                        <img class="card-img-top" src="{{ coupon.cover }}" alt="{{ coupon.title }}">
                 </a>
                 <div class="card-block">
-                    <a href="#" data-toggle="modal" data-target="#couponModal" data-title="{{ coupon.title }}" data-bizname="{{ coupon.business.name }}">
+                    <a href="#" 
+                        data-toggle="modal" 
+                        data-target="#couponModal" 
+                        data-title="{{ coupon.title }}" 
+                        data-bizname="{{ coupon.business.name }}" 
+                        data-bizaddress="{{ coupon.business.address }}" 
+                        data-urlcode="{{ coupon.url_code }}"
+                        >
                         <h5>{{ coupon.title }}</h5>
                     </a>
                     <p class="text-muted">{{ coupon.business.name }}</p>
@@ -24,38 +38,5 @@ DCjura
         {% endfor %}
     </div>
 </div>
-
-<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title coupon-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body coupon-body">
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <img class="media-img" src="http://icons.iconarchive.com/icons/seanau/flat-smiley/256/Smiley-22-icon.png" alt="image">
-                    </div>
-                    <div class="media-body">
-                        <h1 class="media-heading coupon-title"></h1>
-                    </div>
-                </div>
-                <p class="coupon-fine-print">
-                Lorem ipsum dolor sit amet, prima verear mediocrem vel id, has autem epicurei reformidans ex. Mel ut novum partiendo. Duis dictas elaboraret his eu, quo ad modo tota scripserit, sumo tollit an est. Ad has illum commodo, vis te veritus sapientem corrumpit. Vis libris feugait contentiones ne, id per cetero fuisset.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="share-link">Share</label>
-                        <input type="text" class="form-control" id="share" value="https://dcjura.com/">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>			
+{% include 'coupon-modal.html' %}
 {% endblock %}

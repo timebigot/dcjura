@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<div class="modal{% if not modal %} fade{% endif %}" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {% if not modal %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% endif %}
+                <h4 class="modal-title coupon-title" id="myModalLabel">{% if modal %}{{ coupon.title }}{% endif %}</h4>
+            </div>
+            <div class="modal-body coupon-body">
+                <div class="media">
+                    {% if coupon.business.logo %}
+                    <div class="media-left media-middle">
+                        <img class="media-img" src="{{ coupon.business.logo }}" alt="image">
+                    </div>
+                    {% endif %}
+                    <div class="media-body">
+                        <h1 class="media-heading coupon-title">{% if modal %}{{ coupon.title }}{% endif %}</h1>
+                    </div>
+                </div>
+                <p class="coupon-fine-print">
+                본 쿠폰을 소지하신 분에 한해 할인 혜택이 제공됩니다. 쿠폰은 하루 1인 1매 사용 가능하며, 다른 할인 프로모션과 중복 사용할 수 없습니다.
+                쿠폰은 현금이나 크레딧으로 교환 할수없습니다. 해당 쿠폰 서비스가 제공되는 업체는 사용 조건을 변경하거나 쿠폰을 취소할 권리를 보유합니다.
+                회원은 상품쿠폰을 회원 본인의 구매에 한해서만 사용할 수 있으며, 어떠한 경우에도 이를 타인에게 실질적 으로 매매 또는 양도할 수 없습니다.
+                상품쿠폰은 일부 품목이나 금액에 따라 사용이 제한될 수 있으며, 유효기간이 지난 후에는 사용할 수 없습니다.
+                </p>
+            </div>
+            <div class="container">
+                <div id="map"></div>
+                <script>
+    function initMap() {
+        var geocoder = new google.maps.Geocoder();
+        var myLatLng = {lat: 0, lng: 0};
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            scrollwheel: false,
+            zoom: 13
+        });
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+            map: map,
+            position: myLatLng,
+            title: 'yo'
+        });
+        $(window).resize(function() {
+            // (the 'map' here is the result of the created 'var map = ...' above)
+            google.maps.event.trigger(map, "resize");
+        });
+        var address = '2908 jermantown rd'
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } 
+            else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+        console.log(address)
+    }
+                </script>
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="share-link">Share</label>
+                        <input type="text" class="form-control coupon-urlcode" id="share-link" value="https://dcjura.com/c/{% if modal %}{{ coupon.url_code }}{% endif %}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>			
+

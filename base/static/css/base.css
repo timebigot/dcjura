@@ -24,6 +24,7 @@
 .coupon-fine-print {
     font-size: 10px;
 }
+<<<<<<< HEAD
 footer {
   position: absolute;
   bottom: 0;
@@ -36,3 +37,8 @@ footer {
 	color: black;
 	text-align: center;
 }
+=======
+#map {
+    height: 300px;
+}
+>>>>>>> c477edc2de1ccaf5c9c511cfc881299474b0679c

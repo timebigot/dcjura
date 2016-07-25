@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -72,3 +73,7 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect('/')
+
+def coupon(request, url_code):
+    coupon = Coupon.objects.get(url_code=url_code)
+    return render(request, 'coupon.html', {'coupon': coupon, 'modal': True})
