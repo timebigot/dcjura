@@ -77,3 +77,12 @@ def log_out(request):
 def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     return render(request, 'coupon.html', {'coupon': coupon, 'modal': True})
+
+def map(request):
+    if request.method == 'GET':
+        url_code = request.GET.get('url_code')
+        coupon = Coupon.objects.get(url_code=url_code)
+        return render(request, 'map.html', {'coupon': coupon})
+    else:
+        return HttpResponse('error')
+

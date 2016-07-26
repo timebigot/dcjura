@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^signup', views.sign_up, name='signup'),
     url(r'^logout/$', views.log_out, name='logout'),
     url(r'^c/(?P<url_code>\w{7})/$', views.coupon, name='coupon'),
+    url(r'^map/$', views.map, name='map'),
 ]

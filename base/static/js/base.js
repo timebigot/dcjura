@@ -9,4 +9,11 @@ $('#couponModal').on('show.bs.modal', function (event) {
     modal.find('.coupon-title').text(title);
     modal.find('.coupon-bizname').text(bizname);
     modal.find('.coupon-urlcode').val('http://dcjura.com/c/' + urlcode)
+    $.ajax({
+        url: 'map?url_code=' + urlcode,
+        dataType: 'html',
+        success: function(data) {
+            $( "#map" ).append(data);
+        }
+    });
 })
