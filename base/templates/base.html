@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <title>{% block title %}{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,45 +17,45 @@
 
     <body>
         <nav class="navbar navbar-dark bg-danger header">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6">
-                    <a class="navbar-brand" href="/">DCjura - DEMO</a>
-                </div>
-                <div class="col-xs-6">
-                    <div class="pull-xs-right">
-                        {% if user.is_authenticated %}
-                        <a class="btn btn-link text-info">{{ user.username }}</a>
-                        <a href="{% url 'logout' %}" class="btn btn-link text-info">LOGOUT</a>
-                        {% else %}
-                        <a href="{% url 'join' %}" class="btn btn-link text-info">JOIN</a>
-                        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a class="navbar-brand" href="/">DCjura - DEMO</a>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="pull-xs-right">
+                            {% if user.is_authenticated %}
+                            <a class="btn btn-link text-info">{{ user.username }}</a>
+                            <a href="{% url 'logout' %}" class="btn btn-link text-info">LOGOUT</a>
+                            {% else %}
+                            <a href="{% url 'join' %}" class="btn btn-link text-info">JOIN</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </nav>
 
         {% block message %}
         {% if messages %}
 
         <section>
-        <br>
-        <div class="container">
-            {% for message in messages %}
-            <div{% if message.tags %} class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}" role="{{ message.tags }}"{% endif %}>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {% if message.tags == 'success' %}
-                <i class="fa fa-check" aria-hidden="true"></i>
-                {% elif message.tags == 'error' %}
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {% endif %}
-                {{ message }}
+            <br>
+            <div class="container">
+                {% for message in messages %}
+                <div{% if message.tags %} class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}" role="{{ message.tags }}"{% endif %}>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {% if message.tags == 'success' %}
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    {% elif message.tags == 'error' %}
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    {% endif %}
+                    {{ message }}
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
         </section>
 
         {% endif %}
@@ -65,22 +64,21 @@
         {% block content %}
         {% endblock %}
 
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">						
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="copy">&copy;2016 DCjura</p>
+                    </div>
+                    <div class="col-sm-4">					
+                    </div>
+                </div>
+        </footer>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
         <script src="{% static 'js/base.js' %}"></script>
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">						
-					</div>
-				<div class="col-sm-4">
-					<p class="copy">&copy;2016 DCjura</p>
-				</div>
-				<div class="col-sm-4">					
-				</div>
-			</div>
-		</footer>
-
-  </body>
     </body>
 </html>
