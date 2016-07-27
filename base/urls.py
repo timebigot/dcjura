@@ -5,10 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^join', views.join, name='join'),
-    url(r'^login', views.log_in, name='login'),
-    url(r'^signup', views.sign_up, name='signup'),
-    url(r'^logout/$', views.log_out, name='logout'),
     url(r'^c/(?P<url_code>\w{7})/$', views.coupon, name='coupon'),
     url(r'^map/$', views.map, name='map'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
