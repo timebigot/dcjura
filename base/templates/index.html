@@ -16,9 +16,10 @@ DCjura
                         data-title="{{ coupon.title }}" 
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
+                        data-bizphone="{{ coupon.business.phone }}"
                         data-urlcode="{{ coupon.url_code }}"
                         >
-                        <img class="card-img-top" src="{{ coupon.cover }}" alt="{{ coupon.title }}">
+                        <img class="card-img-top" src="img/{{ coupon.cover }}" alt="{{ coupon.title }}">
                 </a>
                 <div class="card-block">
                     <a href="#" 
@@ -27,6 +28,7 @@ DCjura
                         data-title="{{ coupon.title }}" 
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
+                        data-bizphone="{{ coupon.business.phone }}"
                         data-urlcode="{{ coupon.url_code }}"
                         >
                         <h5>{{ coupon.title }}</h5>

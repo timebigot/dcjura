@@ -28,6 +28,23 @@
                 상품쿠폰은 일부 품목이나 금액에 따라 사용이 제한될 수 있으며, 유효기간이 지난 후에는 사용할 수 없습니다.
                 </p>
             </div>
+            <hr>
+            <div class="container">
+                {% if modal %}
+
+                <h3>About {{ coupon.business.name }}</h3>
+                <p>Address: {{ coupon.business.address }}</p>
+                <p>Phone: {{ coupon.business.phone}}</p>
+
+                {% else %}
+                
+                <h3 class="coupon-bizname"></h3>
+                <p class="coupon-bizaddress"></p>
+                <p class="coupon-bizphone"></p>
+
+                {% endif %}
+            </div>
+
             <div id="map">
             </div>
             {% if modal %}
