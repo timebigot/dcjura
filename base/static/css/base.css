@@ -3,11 +3,11 @@
 }
 .bg-danger {
     color: #fff!important;
-    background-color: #CF000F!important;
+    background-color: #4183D7!important;
 }
 .navbar-dark .navbar-brand {
     color: #fff;
-    font-family: fantasy;
+    font-family: 'Exo 2', sans-serif;
     font-size: 39px;
 }
 
@@ -30,8 +30,19 @@ footer {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #CF000F;
+  height: 95px;
+  background-color: #ECECEC;
+  padding-top: 15px;
+}
+#navlist li {
+display: inline;
+list-style-type: none;
+padding-right: 25px;
+}
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 .copy {
 	color: black;

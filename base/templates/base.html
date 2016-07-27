@@ -8,6 +8,7 @@
 
         {% load staticfiles %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Exo+2:900' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -20,7 +21,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-6">
-                        <a class="navbar-brand" href="/">DCjura - DEMO</a>
+                        <a class="navbar-brand" href="/">DCjura</a>
                     </div>
                     <div class="col-xs-6">
                         <div class="pull-xs-right">
@@ -67,14 +68,24 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4">						
+                    <div class="col-sm-4">
+						<div id="navcontainer">
+							<ul id="navlist">
+								<li id="active"><a href="#" id="current">DCjura 소개</a></li>
+								<li><a href="#">Partner 문의</a></li>
+								<li><a href="#">광고</a></li>
+							</ul>
+						</div>     
                     </div>
                     <div class="col-sm-4">
-                        <p class="copy">&copy;2016 DCjura</p>
+						<div class="copyright">
+							<p class="copy">&copy;2016 DCjura</p>
+						</div>
                     </div>
-                    <div class="col-sm-4">					
-                    </div>
-                </div>
+                    <div class="col-sm-4">
+					</div>
+				</div>
+			</div>
         </footer>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
