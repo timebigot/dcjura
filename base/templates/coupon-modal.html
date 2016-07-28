@@ -14,7 +14,7 @@
                 <div class="media">
                     {% if coupon.business.logo %}
                     <div class="media-left media-middle">
-                        <img class="media-img" src="{{ coupon.business.logo }}" alt="image">
+                        <img class="media-img" src="/img/{{ coupon.business.logo }}" alt="image">
                     </div>
                     {% endif %}
                     <div class="media-body">
@@ -60,13 +60,13 @@ $( document ).ready(function() {
 });
             </script>
             {% endif %}
-        <div class="modal-footer">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="share-link">Share</label>
-                        <input type="text" class="form-control coupon-urlcode" id="share-link" value="https://dcjura.com/c/{% if modal %}{{ coupon.url_code }}{% endif %}">
+            <div class="modal-footer">
+                <div class="form-group">
+                    <label for="share-link" class="col-xs-2 col-form-label share-form-label">Share:</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control coupon-urlcode" id="share-link" value="{% if modal %}{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}{% endif %}">
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

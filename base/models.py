@@ -7,7 +7,7 @@ class Business(models.Model):
     email = models.EmailField(max_length=100, blank=True)
     owner = models.CharField(max_length=30, blank=True)
     address = models.CharField(max_length=100)
-    logo = models.FileField(upload_to='logo/')
+    logo = models.FileField(upload_to='logo/', blank=True)
     is_active = models.BooleanField(default=1)
 
     def __str__(self):

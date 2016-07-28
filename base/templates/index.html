@@ -17,7 +17,11 @@ DCjura
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
                         data-bizphone="{{ coupon.business.phone }}"
+                        {% if coupon.business.logo %}
+                        data-bizlogo="{{ coupon.business.logo }}"
+                        {% endif %}
                         data-urlcode="{{ coupon.url_code }}"
+                        data-url="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}"
                         >
                         <img class="card-img-top" src="img/{{ coupon.cover }}" alt="{{ coupon.title }}">
                 </a>
@@ -29,9 +33,13 @@ DCjura
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
                         data-bizphone="{{ coupon.business.phone }}"
+                        {% if coupon.business.logo %}
+                        data-bizlogo="{{ coupon.business.logo }}"
+                        {% endif %}
                         data-urlcode="{{ coupon.url_code }}"
+                        data-url="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}"
                         >
-                        <h5>{{ coupon.title }}</h5>
+                        <h5 class="card-title">{{ coupon.title }}</h5>
                     </a>
                     <p class="text-muted">{{ coupon.business.name }}</p>
                 </div>

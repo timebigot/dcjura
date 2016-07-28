@@ -1,16 +1,45 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 100px;
+}
 .header {
     margin-bottom: 15px;
+    border-radius: 0px;
 }
 .bg-danger {
     color: #fff!important;
-    background-color: #CF000F!important;
+    background-color: #4183D7!important;
 }
 .navbar-dark .navbar-brand {
     color: #fff;
-    font-family: fantasy;
+    font-family: 'Exo 2', sans-serif;
     font-size: 39px;
 }
-
+.nav-menu {
+    margin-top: 20px;
+    text-align: right;
+}
+.nav-menu * {
+    color: white;
+    padding-left: 10px;
+}
+.nav-menu>a:hover, .nav-menu>a:focus {
+    color: #eee;
+}
+.card {
+    margin-bottom: 15px;
+}
+.card-title {
+    height: 47px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 .card-img-top {
     width: 100%;
 }
@@ -24,21 +53,30 @@
 .coupon-fine-print {
     font-size: 10px;
 }
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #CF000F;
-}
-.copy {
-	color: black;
-	text-align: center;
-	margin-top: 15px;
-}
 #map {
     height: 300px;
 }
+.modal-footer {
+    text-align: left;
+}
+.share-form-label {
+    margin-top: 5px;
+}
 
+footer {
+    background-color: #ECECEC;
+    padding-top: 15px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+}
+.footer-menu>a {
+    padding: 5px;
+}
+.copy {
+    color: black;
+    text-align: center;
+    margin-top: 15px;
+}
