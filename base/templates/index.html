@@ -8,7 +8,7 @@ DCjura
 <div class="container">
     <div class="row">
         {% for coupon in coupons %}
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-12">
             <div class="card">
                     <a href="#" 
                         data-toggle="modal" 
@@ -41,7 +41,7 @@ DCjura
                         >
                         <h5 class="card-title">{{ coupon.title }}</h5>
                     </a>
-                    <p class="text-muted">{{ coupon.business.name }}</p>
+                    <p class="text-muted card-business">{{ coupon.business.name }}</p>
                 </div>
             </div>
         </div>
