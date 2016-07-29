@@ -2,18 +2,21 @@
 {% block title %}
 DCjura
 {% endblock %}
+{% load staticfiles %}
 
 {% block content %}
 
 <div class="container">
     <div class="row">
         {% for coupon in coupons %}
+        {% if coupon.exp_date < today or coupon.exp_date = None %}
         <div class="col-md-3 col-xs-6">
             <div class="card">
                     <a href="#" 
                         data-toggle="modal" 
                         data-target="#couponModal" 
                         data-title="{{ coupon.title }}" 
+                        data-expdate="{{ coupon.exp_date|date:"m/d/y" }}" 
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
                         data-bizphone="{{ coupon.business.phone }}"
@@ -23,13 +26,18 @@ DCjura
                         data-urlcode="{{ coupon.url_code }}"
                         data-url="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}"
                         >
+                        {% if coupon.cover %}
                         <img class="card-img-top" src="img/{{ coupon.cover }}" alt="{{ coupon.title }}">
+                        {% else %}
+                        <img class="card-img-top" src="{% static 'img/error.gif' %}" alt="{{ coupon.title }}">
+                        {% endif %}
                 </a>
                 <div class="card-block">
                     <a href="#" 
                         data-toggle="modal" 
                         data-target="#couponModal" 
                         data-title="{{ coupon.title }}" 
+                        data-expdate="{{ coupon.exp_date|date:"m/d/y" }}" 
                         data-bizname="{{ coupon.business.name }}" 
                         data-bizaddress="{{ coupon.business.address }}" 
                         data-bizphone="{{ coupon.business.phone }}"
@@ -45,6 +53,7 @@ DCjura
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>

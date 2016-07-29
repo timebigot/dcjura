@@ -1,6 +1,7 @@
 $('#couponModal').on('show.bs.modal', function (event) {
     var anchor = $(event.relatedTarget);
     var title = anchor.data('title');
+    var expdate = anchor.data('expdate');
     var bizname = anchor.data('bizname');
     var bizaddress = anchor.data('bizaddress');
     var bizphone = anchor.data('bizphone');
@@ -12,22 +13,32 @@ $('#couponModal').on('show.bs.modal', function (event) {
     modal.find('.coupon-title').text(title);
     modal.find('.coupon-bizname').text('About ' + bizname);
     modal.find('.coupon-urlcode').val(url)
-    modal.find('.coupon-bizaddress').text('Address: ' + bizaddress);
     modal.find('.coupon-bizphone').text('Phone: ' + bizphone);
     
+    if (expdate && expdate != 'None' && $('.coupon-exp-date').length == 0) {
+        modal.find('.coupon-fine-print').append("<span class='coupon-exp-date'>Expires: " + expdate + "</span>");
+    }
+    
     if (bizlogo && $('.media-image').length == 0) {
-        modal.find('.media').prepend(" <div class='media-image media-left media-middle'> <img class='media-img' src='/img/" + bizlogo + "' alt='image'> </div> ");
+        modal.find('.media').prepend(" <div class='media-image media-left media-top'> <img class='media-img' src='/img/" + bizlogo + "' alt='image'> </div> ");
     }
 
-    $.ajax({
-        url: 'map?url_code=' + urlcode,
-        dataType: 'html',
-        success: function(data) {
-            $( "#map" ).append(data);
-        }
-    });
+    if (bizaddress && $('').length == 0) {
+        modal.find('.coupon-bizaddress').text('Address: ' + bizaddress);
+        $.ajax({
+            url: 'map?url_code=' + urlcode,
+            dataType: 'html',
+            success: function(data) {
+                $( ".map-container" ).append("<div id='map'></div>");
+                $( "#map" ).append(data);
+            }
+        });
+    }
 })
 
 $('#couponModal').on('hidden.bs.modal', function (event) {
     $('.media-image').remove();
+    $('.coupon-exp-date').remove();
+    $('#map').remove();
+    $('.coupon-bizaddress').empty();
 });
