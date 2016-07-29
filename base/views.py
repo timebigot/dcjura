@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from base.models import *
+import datetime
 
 def index(request):
     coupons = Coupon.objects.all().order_by('-pk')
-    return render(request, 'index.html', {'coupons': coupons})
+    return render(request, 'index.html', {'coupons': coupons, 'today': datetime.date.today()})
 
 def join(request):
     if request.user.is_authenticated():
