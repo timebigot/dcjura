@@ -1,6 +1,7 @@
 $('#couponModal').on('show.bs.modal', function (event) {
     var anchor = $(event.relatedTarget);
     var title = anchor.data('title');
+    var couptitle = anchor.data('couptitle');
     var expdate = anchor.data('expdate');
     var bizname = anchor.data('bizname');
     var bizaddress = anchor.data('bizaddress');
@@ -11,12 +12,13 @@ $('#couponModal').on('show.bs.modal', function (event) {
     var modal = $(this);
 
     modal.find('.coupon-title').text(title);
+    modal.find('.coupon-couptitle').append(couptitle);
     modal.find('.coupon-bizname').text('About ' + bizname);
     modal.find('.coupon-urlcode').val(url)
     modal.find('.coupon-bizphone').text('Phone: ' + bizphone);
     
     if (expdate && expdate != 'None' && $('.coupon-exp-date').length == 0) {
-        modal.find('.coupon-fine-print').append("<span class='coupon-exp-date'>Expires: " + expdate + "</span>");
+        modal.find('.coupon-body').append("<span class='coupon-exp-date'>Expires: " + expdate + "</span>");
     }
     
     if (bizlogo && $('.media-image').length == 0) {
@@ -37,6 +39,7 @@ $('#couponModal').on('show.bs.modal', function (event) {
 })
 
 $('#couponModal').on('hidden.bs.modal', function (event) {
+    $('.coupon-couptitle').find('p').remove();
     $('.media-image').remove();
     $('.coupon-exp-date').remove();
     $('#map').remove();
