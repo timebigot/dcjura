@@ -16,7 +16,7 @@ class Business(models.Model):
 class Coupon(models.Model):
     title = models.TextField(max_length=100)
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    exp_date = models.DateField(blank=True)
+    exp_date = models.DateField(blank=True, null=True)
     url_code = models.CharField(max_length=7)
     cover = models.FileField(upload_to='cover/')
     is_void = models.BooleanField(default=False)
