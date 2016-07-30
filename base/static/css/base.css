@@ -46,14 +46,18 @@ body {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    margin-bottom: 8px;
 }
-.card-business {
+.card-detail {
     height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+.card-expdate {
+    font-size: 12px;
 }
 .card-img-top {
     width: 100%;
