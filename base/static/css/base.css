@@ -58,6 +58,7 @@ body {
 }
 .card-expdate {
     font-size: 12px;
+    margin-bottom: 0px;
 }
 .card-img-top {
     width: 100%;
