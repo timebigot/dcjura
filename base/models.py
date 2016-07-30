@@ -14,7 +14,7 @@ class Business(models.Model):
         return self.name
 
 class Coupon(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.TextField(max_length=100)
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
     exp_date = models.DateField(blank=True)
     url_code = models.CharField(max_length=7)
