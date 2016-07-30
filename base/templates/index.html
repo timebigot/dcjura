@@ -10,7 +10,7 @@ DCjura
     <div class="row">
         {% for coupon in coupons %}
         {% if coupon.exp_date > today or coupon.exp_date = None %}
-        <div class="col-md-3 col-xs-6">
+        <div class="col-md-3 col-xs-6 card-container">
             <div class="card">
                     <a href="#" 
                         data-toggle="modal" 

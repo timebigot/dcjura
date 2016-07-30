@@ -29,8 +29,15 @@ body {
 .nav-menu>a:hover, .nav-menu>a:focus {
     color: #eee;
 }
+.card-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 .card {
     margin-bottom: 15px;
+}
+.card-block {
+    padding: 15px;
 }
 .card-title {
     height: 45px;
