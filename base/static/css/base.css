@@ -24,6 +24,8 @@ body {
 }
 .nav-menu * {
     color: white;
+}
+.nav-menu>a:not(:first-child) {
     padding-left: 10px;
 }
 .nav-menu>a:hover, .nav-menu>a:focus {

@@ -29,7 +29,7 @@ DCjura
                         data-url="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}"
                         >
                         {% if coupon.cover %}
-                        <img class="card-img-top" src="img/{{ coupon.cover }}" alt="{{ coupon.title }}">
+                        <img class="card-img-top" src="{{ coupon.cover.url }}" alt="{{ coupon.title }}">
                         {% else %}
                         <img class="card-img-top" src="{% static 'img/error.gif' %}" alt="{{ coupon.title }}">
                         {% endif %}

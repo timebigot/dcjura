@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail, BadHeaderError
+#from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.models import User
+#from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from base.models import *
 import datetime
@@ -19,6 +20,7 @@ def join(request):
             next = request.GET.get('next')
         return render(request, 'join.html', {'next': next})
 
+"""
 def log_in(request):
     next = request.GET.get('next')
 
@@ -74,6 +76,7 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect('/')
+"""
 
 def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
@@ -87,3 +90,22 @@ def map(request):
     else:
         return HttpResponse('error')
 
+def contact(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        reason = request.POST.get('reason')
+        subject = reason + ': ' + subject
+        message = request.POST.get('message')
+        from_email = request.POST.get('from_email')
+        to_email = 'timebigot@gmail.com'
+        if subject and reason and message and from_email:
+            try:
+                send_mail(subject, message, from_email, [to_email])
+            except BadHeaderError:
+                return redirect('/')
+            else:
+                message.success(request, 'Message sent!')
+        else:
+            return HttpResponse('Make sure all fields are entered and valid.')
+    else:
+        return render(request, 'contact.html')
