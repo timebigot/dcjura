@@ -89,23 +89,25 @@ def map(request):
         return render(request, 'map.html', {'coupon': coupon})
     else:
         return HttpResponse('error')
-
+"""
 def contact(request):
     if request.method == 'POST':
-        subject = request.POST.get('subject')
-        reason = request.POST.get('reason')
-        subject = reason + ': ' + subject
+        subject = request.POST.get('subject', '')
+        reason = request.POST.get('reason', '')
         message = request.POST.get('message')
-        from_email = request.POST.get('from_email')
-        to_email = 'contact.dcjura@gmail.com'
+        from_email = request.POST.get('from_email', '')
         if subject and reason and message and from_email:
+            subject = reason + ': ' + subject
+            message = from_email + ': ' + message
             try:
-                send_mail(subject, message, from_email, [to_email])
+                send_mail(subject, message, from_email, ['contact.dcjura@gmail.com'])
             except BadHeaderError:
                 return redirect('/')
             else:
-                message.success(request, 'Message sent!')
+                messages.success(request, 'Message sent!')
+                return render(request, 'contact.html')
         else:
             return HttpResponse('Make sure all fields are entered and valid.')
     else:
         return render(request, 'contact.html')
+"""
