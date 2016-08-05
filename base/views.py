@@ -97,7 +97,7 @@ def contact(request):
         subject = reason + ': ' + subject
         message = request.POST.get('message')
         from_email = request.POST.get('from_email')
-        to_email = 'timebigot@gmail.com'
+        to_email = 'contact.dcjura@gmail.com'
         if subject and reason and message and from_email:
             try:
                 send_mail(subject, message, from_email, [to_email])
