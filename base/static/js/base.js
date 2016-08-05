@@ -22,7 +22,7 @@ $('#couponModal').on('show.bs.modal', function (event) {
     }
     
     if (bizlogo && $('.media-image').length == 0) {
-        modal.find('.media').prepend(" <div class='media-image media-left media-top'> <img class='media-img' src='/img/" + bizlogo + "' alt='image'> </div> ");
+        modal.find('.media').prepend(" <div class='media-image media-left media-top'> <img class='media-img' src='" + bizlogo + "' alt='image'> </div> ");
     }
 
     if (bizaddress && $('').length == 0) {

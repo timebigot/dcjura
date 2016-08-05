@@ -23,7 +23,7 @@ DCjura
                         data-bizaddress="{{ coupon.business.address }}" 
                         data-bizphone="{{ coupon.business.phone }}"
                         {% if coupon.business.logo %}
-                        data-bizlogo="{{ coupon.business.logo }}"
+                        data-bizlogo="{{ coupon.business.logo.url }}"
                         {% endif %}
                         data-urlcode="{{ coupon.url_code }}"
                         data-url="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}"
