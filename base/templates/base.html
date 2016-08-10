@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% load tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,10 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        {% load staticfiles %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
         <link href='https://fonts.googleapis.com/css?family=Exo+2:900' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/dcjura.css' %}">
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -30,13 +31,17 @@
         <nav class="navbar navbar-dark bg-danger header">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-3">
                         <a class="navbar-brand" href="/">DCjura</a>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-9">
                         <div class="pull-xs-right nav-menu">
-                            <a class="nav-about" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
-                            <a href="mailto:contact.dcjura@gmail.com">Contact</a>
+                            {% get_cats as cats %}
+                            {% for cat in cats %}
+                            {% if cat.coupon_set.first and cat.coupon_set.first.exp_date >= today or cat.coupon_set.first.exp_date = None %}
+                            <a href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a>
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

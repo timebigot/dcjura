@@ -42,13 +42,14 @@ body {
     padding: 15px;
 }
 .card-title {
-    height: 45px;
+    height: 52px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     margin-bottom: 8px;
+    font-size: 16px;
 }
 .card-detail {
     height: 25px;

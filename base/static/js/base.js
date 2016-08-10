@@ -28,7 +28,7 @@ $('#couponModal').on('show.bs.modal', function (event) {
     if (bizaddress && $('').length == 0) {
         modal.find('.coupon-bizaddress').text('Address: ' + bizaddress);
         $.ajax({
-            url: 'map?url_code=' + urlcode,
+            url: '/map?url_code=' + urlcode,
             dataType: 'html',
             success: function(data) {
                 $( ".map-container" ).append("<div id='map'></div>");

@@ -82,6 +82,11 @@ def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     return render(request, 'coupon.html', {'coupon': coupon, 'modal': True})
 
+def category(request, category):
+    category = Category.objects.get(slug=category)
+    coupons = Coupon.objects.filter(category=category).order_by('-pk')
+    return render(request, 'index.html', {'coupons': coupons, 'today': datetime.date.today()})
+
 def map(request):
     if request.method == 'GET':
         url_code = request.GET.get('url_code')
