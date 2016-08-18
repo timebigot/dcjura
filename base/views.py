@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
+from django.http import JsonResponse
+from django.core import serializers
+from django.db.models import Q
 #from django.contrib.auth.decorators import login_required
 #from django.contrib.auth.models import User
 #from django.contrib.auth import authenticate, login, logout
@@ -8,9 +11,11 @@ from django.contrib import messages
 from base.models import *
 import datetime
 
+today = datetime.date.today()
+
 def index(request):
-    coupons = Coupon.objects.all().order_by('-pk')
-    return render(request, 'index.html', {'coupons': coupons, 'today': datetime.date.today()})
+    all_coupons = Coupon.objects.all().order_by('-pk')
+    return render(request, 'index.html', {'all_coupons': all_coupons})
 
 def join(request):
     if request.user.is_authenticated():
@@ -80,20 +85,19 @@ def log_out(request):
 
 def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
-    return render(request, 'coupon.html', {'coupon': coupon, 'modal': True})
+    category = coupon.category
+    return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
 
 def category(request, category):
     category = Category.objects.get(slug=category)
     coupons = Coupon.objects.filter(category=category).order_by('-pk')
-    return render(request, 'index.html', {'coupons': coupons, 'today': datetime.date.today()})
+    all_coupons = Coupon.objects.all().order_by('-pk')
+    return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': datetime.date.today()})
 
-def map(request):
-    if request.method == 'GET':
-        url_code = request.GET.get('url_code')
-        coupon = Coupon.objects.get(url_code=url_code)
-        return render(request, 'map.html', {'coupon': coupon})
-    else:
-        return HttpResponse('error')
+def modal(request, url_code):
+    coupon = Coupon.objects.get(url_code=url_code)
+    return render(request, 'modal.html', {'coupon':coupon})
+
 """
 def contact(request):
     if request.method == 'POST':
@@ -116,3 +120,26 @@ def contact(request):
     else:
         return render(request, 'contact.html')
 """
+def search(request, query=''):
+    if request.method == 'POST':
+        query = request.POST.get('query')
+        return redirect('/search/' + query)
+    else:
+        if not query:
+            title = 'None'
+            return HttpResponse('No results')
+        else:
+            c = Coupon.objects
+            coupons = c.filter(
+                Q(title__icontains=query) |
+                Q(category__eng_name__icontains=query) |
+                Q(category__kor_name__icontains=query) |
+                Q(business__name__icontains=query)
+                ).order_by('-pk')
+            coupons = coupons.exclude(exp_date__lte=today)
+            if not coupons:
+                empty_results = True
+            else:
+                empty_results = False
+    all_coupons = Coupon.objects.all().order_by('-pk')
+    return render(request, 'index.html', {'coupons': coupons, 'search': query, 'all_coupons': all_coupons, 'empty_results': empty_results})

@@ -16,6 +16,11 @@ def get_cats():
     cats = Category.objects.all().order_by('kor_name')
     return cats
 
+@register.simple_tag
+def today_tag():
+    today = datetime.date.today()
+    return today
+
 # filters
 @register.filter
 def expire_soon(exp_day):

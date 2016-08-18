@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<div id="couponModalContent" class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header">
+        {% if not share_page %}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        {% endif %}
+        </div>
+        <div class="modal-body">
+            {% include 'card.html' %}
+        </div>
+
+        {% if coupon.exp_date %}
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-block">
+                    <h4>Info</h4>
+                    <p class="coupon-exp-date">Expires: {{ coupon.exp_date|date:"m/d/Y" }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-block">
+                    <h4>About</h4>
+                    <div class="media">
+                        {% if coupon.business.logo %}
+                        <a class="media-left media-business-logo" href="#" align="center">
+                            <img class="img-circle" src="{{ coupon.business.logo.url }}" alt="{{ coupon.business.name }}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <p class="card-text"><i class="fa fa-building" aria-hidden="true"></i> {{ coupon.business.name }}</p>
+                    <p class="card-text"><i class="fa fa-phone" aria-hidden="true"></i> {{ coupon.business.phone }}</p>
+                    {% if coupon.business.address %}
+                    <p class="card-text"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ coupon.business.address }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if coupon.business.address %}
+
+        <div id="map"></div>
+        <script>
+function initMap() {
+    var geocoder = new google.maps.Geocoder();
+    var myLatLng = {lat: 0, lng: 0};
+    // Create a map object and specify the DOM element for display.
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: myLatLng,
+        scrollwheel: false,
+        zoom: 13
+    });
+    // Create a marker and set its position.
+    var marker = new google.maps.Marker({
+        map: map,
+        position: myLatLng,
+        title: '{{ coupon.business.name }}'
+    });
+    $(window).resize(function() {
+        // (the 'map' here is the result of the created 'var map = ...' above)
+        google.maps.event.trigger(map, "resize");
+    });
+    var address = '{{ coupon.business.address }}'
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } 
+            else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+}
+        </script>
+
+        {% load tags %}
+        {% gmaps as gmaps_key %}
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_key }}&callback=initMap" async defer></script>
+        {% endif %}
+
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-block">
+                    <h4>Fine Print</h4>
+                    <ul class="coupon-fine-print">
+                        <li>본 쿠폰을 소지하신 분에 한해 할인 혜택이 제공됩니다.</li>
+                        <li>쿠폰은 하루 1인 1매 사용 가능하며, 다른 할인 프로모션과 중복 사용할 수 없습니다.</li>
+                        <li>쿠폰은 현금이나 크레딧으로 교환 할수없습니다.</li>
+                        <li>해당 쿠폰 서비스가 제공되는 업체는 사용 조건을 변경하거나 쿠폰을 취소할 권리를 보유합니다.</li>
+                        <li>회원은 상품쿠폰을 회원 본인의 구매에 한해서만 사용할 수 있으며, 어떠한 경우에도 이를 타인에게 실질적 으로 매매 또는 양도할 수 없습니다.</li>
+                        <li>상품쿠폰은 일부 품목이나 금액에 따라 사용이 제한될 수 있으며, 유효기간이 지난 후에는 사용할 수 없습니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+                <div class="card-block">
+                    <h4>Share</h4>
+                    <div class="form-group">
+                        <input type="text" class="form-control coupon-urlcode" id="share-link" value="{{ request.META.HTTP_HOST }}{% url 'coupon' coupon.url_code %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>			

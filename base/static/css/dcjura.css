@@ -9,6 +9,9 @@ body {
     margin-bottom: 15px;
     border-radius: 0px;
 }
+.navbar {
+    padding: 5px 0px;
+}
 .bg-danger {
     color: #fff!important;
     background-color: #4183D7!important;
@@ -19,11 +22,8 @@ body {
     font-size: 39px;
 }
 .nav-menu {
-    margin-top: 20px;
+    margin-top: 15px;
     text-align: right;
-}
-.nav-menu * {
-    color: white;
 }
 .nav-menu>a:not(:first-child) {
     padding-left: 10px;
@@ -31,33 +31,81 @@ body {
 .nav-menu>a:hover, .nav-menu>a:focus {
     color: #eee;
 }
+.btn-transparent {
+    font-size: 25px;
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    padding: 0px;
+}
+.nav-inline {
+    width: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.nav-inline>.nav-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*card*/
+.media {
+    margin: 5px !important;
+}
+.media-object {
+    width: 100px;
+    padding: 5px;
+}
+.media-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem;
+    font-size: 13px;
+    color: white;
+    height: 200px;
+    margin-top: 50px;
+}
+.media-body {
+    padding-right: 10px;
+    margin: 5px 0px;
+    position: relative;
+}
+.media-business-logo{
+    padding: 5px;
+    width: 100%;
+}
 .card-container {
     padding-left: 10px;
     padding-right: 10px;
 }
-.card {
-    margin-bottom: 15px;
-}
-.card-block {
-    padding: 15px;
+.card-coupon {
+    border-style: dashed;
+    border-width: medium;
+    border-color: #eee;
+    margin-bottom: 10px;
 }
 .card-title {
-    height: 52px;
+    height: 69px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 8px;
-    font-size: 16px;
 }
-.card-detail {
+.card-business {
     height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    position: absolute;
+    bottom: 0;
+    margin: 0px;
 }
 .card-expdate {
     font-size: 12px;
@@ -75,9 +123,18 @@ body {
 }
 .coupon-fine-print {
     font-size: 10px;
+    padding-left: 10px;
 }
 #map {
     height: 300px;
+    margin-bottom: 10px;
+}
+.modal-header {
+    border-bottom: transparent;
+    padding-bottom: 0px;
+}
+.modal-body {
+    padding: 5px 15px;
 }
 .modal-footer {
     text-align: left;

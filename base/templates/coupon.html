@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load tags %}
 {% block title %}
-DCjura
+{{ coupon.title }}
 {% endblock %}
 
 {% block content %}
-{% include 'coupon-modal.html' %}
+<div class="modal" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    {% include 'modal.html' %}
+</div>
 <script>
-    $('#couponModal').modal({backdrop:'static', keyboard:false, show:true});
+$('#couponModal').modal({backdrop:'static', keyboard:false, show:true});
 </script>
 {% endblock %}
