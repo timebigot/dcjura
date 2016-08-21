@@ -19,6 +19,11 @@ def index(request):
     all_coupons = Coupon.objects.all().order_by('-pk')
     return render(request, 'index.html', {'all_coupons': all_coupons})
 
+def numbers(request):
+    views = View.objects.filter(is_admin=False)
+    queries = Query.objects.all()
+    return render(request, 'numbers.html', {'views':views, 'queries':queries})
+
 """
 def join(request):
     if request.user.is_authenticated():

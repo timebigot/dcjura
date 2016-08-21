@@ -1,0 +1,16 @@
+<h1>Views</h1>
+{% for view in views %}
+<p>{{ view.coupon.title }}</p>
+<p>{{ view.coupon.business.name }}</p>
+<p>{{ view.view_time }}</p>
+<hr>
+{% endfor %}
+<hr>
+<hr>
+<h1>Queries</h1>
+{% for query in queries %}
+<p>{{ query.query }}</p>
+<p>{{ query.query_time }}</p>
+<hr>
+{% endfor %}
+
