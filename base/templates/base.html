@@ -59,14 +59,14 @@ ga('send', 'pageview');
                 </div>
             </div>
         </nav>
+        <div class="container">
             <ul class="nav nav-pills nav-justified" align="center">
                 {% get_cats as cats %}
                 {% for cat in cats %}
-                {% if cat.coupon_set.first and cat.coupon_set.first.exp_date >= today or cat.coupon_set.first.exp_date == None %}
                 <li role="presentation"><a href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a></li>
-                {% endif %}
                 {% endfor %}
             </ul>
+        </div>
         <hr>
 
         {% block message %}
