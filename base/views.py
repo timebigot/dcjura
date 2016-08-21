@@ -21,8 +21,8 @@ def index(request):
 
 def numbers(request):
     if request.user.is_superuser:
-        views = View.objects.filter(is_admin=False)
-        queries = Query.objects.all()
+        views = View.objects.filter(is_admin=False).order_by('-pk')
+        queries = Query.objects.all().order_by('-pk')
         return render(request, 'numbers.html', {'views':views, 'queries':queries})
     else:
         return redirect('/')
