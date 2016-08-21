@@ -20,9 +20,12 @@ def index(request):
     return render(request, 'index.html', {'all_coupons': all_coupons})
 
 def numbers(request):
-    views = View.objects.filter(is_admin=False)
-    queries = Query.objects.all()
-    return render(request, 'numbers.html', {'views':views, 'queries':queries})
+    if request.user.is_superuser:
+        views = View.objects.filter(is_admin=False)
+        queries = Query.objects.all()
+        return render(request, 'numbers.html', {'views':views, 'queries':queries})
+    else:
+        return redirect('/')
 
 """
 def join(request):
