@@ -10,13 +10,16 @@ from django.db.models import Q
 from django.contrib import messages
 from base.models import *
 import datetime
+from django.utils import timezone
 
 today = datetime.date.today()
+now = timezone.localtime(timezone.now())
 
 def index(request):
     all_coupons = Coupon.objects.all().order_by('-pk')
     return render(request, 'index.html', {'all_coupons': all_coupons})
 
+"""
 def join(request):
     if request.user.is_authenticated():
         return redirect('/')
@@ -25,7 +28,6 @@ def join(request):
             next = request.GET.get('next')
         return render(request, 'join.html', {'next': next})
 
-"""
 def log_in(request):
     next = request.GET.get('next')
 
@@ -108,9 +110,9 @@ def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     category = coupon.category
     if not request.user.is_superuser:
-        view = View(coupon=coupon, view_time=datetime.datetime.now())
+        view = View(coupon=coupon, view_time=now)
     else:
-        view = View(coupon=coupon, view_time=datetime.datetime.now(), is_admin=True)
+        view = View(coupon=coupon, view_time=now, is_admin=True)
     view.save()
     return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
 
@@ -123,9 +125,9 @@ def category(request, category):
 def modal(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     if not request.user.is_superuser:
-        view = View(coupon=coupon, view_time=datetime.datetime.now())
+        view = View(coupon=coupon, view_time=now)
     else:
-        view = View(coupon=coupon, view_time=datetime.datetime.now(), is_admin=True)
+        view = View(coupon=coupon, view_time=now, is_admin=True)
     view.save()
     return render(request, 'modal.html', {'coupon':coupon})
 
@@ -138,9 +140,9 @@ def search(request, query=''):
             empty_results = True
         else:
             if not request.user.is_superuser:
-                query_log = Query(query=query, query_time=datetime.datetime.now())
+                query_log = Query(query=query, query_time=now)
             else:
-                query_log = Query(query=query, query_time=datetime.datetime.now(), is_admin=True)
+                query_log = Query(query=query, query_time=now, is_admin=True)
             query_log.save()
 
             c = Coupon.objects

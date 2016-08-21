@@ -26,6 +26,10 @@ body {
     margin-top: 15px;
     text-align: right;
 }
+.nav-menu>a {
+    color: white;
+    padding: 5px;
+}
 .nav-menu>a:not(:first-child) {
     padding-left: 10px;
 }

@@ -32,18 +32,18 @@ ga('send', 'pageview');
         <nav class="navbar navbar-dark bg-danger header">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-6 col-md-3">
                         <a class="navbar-brand" href="/">DCjura</a>
                     </div>
-                    <div class="col-md-6 hidden-md-up">
+                    <div class="col-sm-6 hidden-md-up">
                         <div class="pull-xs-right nav-menu">
                         <button type="button" class="btn btn-transparent" id="buttonSearch">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="pull-xs-right nav-menu">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="nav-menu">
                             <form action="{% url 'search_redirect' %}" method="POST" class="hidden-sm-down" id="formSearch">{% csrf_token %}
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search DCjura" name="query">
@@ -54,6 +54,12 @@ ga('send', 'pageview');
                                     </span>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 hidden-sm-down">
+                        <div class="pull-xs-right nav-menu">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
+                            <a class="nav-link" href="mailto:contact.dcjura@gmail.com">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -100,8 +106,8 @@ ga('send', 'pageview');
         <footer>
             <div class="container">
                 <div class="footer-menu" align="center">
-                    <a href="#" data-toggle="modal" data-target="#aboutModal">about</a>
-                    <a href="mailto:contact.dcjura@gmail.com">contact</a>
+                    <a href="#" data-toggle="modal" data-target="#aboutModal">About</a>
+                    <a href="mailto:contact.dcjura@gmail.com">Contact</a>
                 </div>     
                 <p class="copy">&copy; 2016 DCjura.com</p>
             </div>
