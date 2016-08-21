@@ -91,6 +91,7 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect('/')
+"""
 
 def contact(request):
     if request.method == 'POST':
@@ -109,10 +110,10 @@ def contact(request):
                 messages.success(request, 'Message sent!')
                 return render(request, 'contact.html')
         else:
-            return HttpResponse('Make sure all fields are entered and valid.')
+            messages.warning(request, 'Make sure all fields are entered and valid.')
+            return render(request, 'contact.html')
     else:
         return render(request, 'contact.html')
-"""
 
 def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)

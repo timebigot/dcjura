@@ -59,14 +59,14 @@ ga('send', 'pageview');
                     <div class="col-md-3 hidden-sm-down">
                         <div class="pull-xs-right nav-menu">
                             <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
-                            <a class="nav-link" href="mailto:contact.dcjura@gmail.com">Contact</a>
+                            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
         <div class="container">
-            <ul class="nav nav-pills nav-justified" align="center">
+            <ul class="flex-container flex-space">
                 {% get_cats as cats %}
                 {% for cat in cats %}
                 <li role="presentation"><a href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a></li>
@@ -107,7 +107,7 @@ ga('send', 'pageview');
             <div class="container">
                 <div class="footer-menu" align="center">
                     <a href="#" data-toggle="modal" data-target="#aboutModal">About</a>
-                    <a href="mailto:contact.dcjura@gmail.com">Contact</a>
+                    <a href="{% url 'contact' %}">Contact</a>
                 </div>     
                 <p class="copy">&copy; 2016 DCjura.com</p>
             </div>
@@ -126,7 +126,7 @@ ga('send', 'pageview');
                         <p>디씨 주라 (Discount Jura) 는 미국에 거주하는 한인들과 한인 업체들간의 활발한 교류를 목적으로 만들어진 쿠폰 사이트 입니다.</p>
                         <p>현재는 노바 (Northern Virginia) 지역을 기점으로 운영되고 있으며 추후 확장을 계획, 추진중에 있습니다.</p>
                         <p>많은 한인분들께서 관심을 가지고 애용해 주시길 부탁드리며 또한 저희 사이트의 발전을위해 좋은 아이디어를 제공해주시면 감사하겠습니다.</p>
-                        <p>FOR ANY INQUIRIES, PLEASE CONTACT US AT <a href="mailto:contact.dcjura@gmail.com">contact.dcjura@gmail.com</a></p>
+                        <p>FOR ANY INQUIRIES, PLEASE CONTACT US AT <a href="{% url 'contact' %}">contact.dcjura@gmail.com</a></p>
                         <h6>How to Use</h6>
                         <p>기존 쿠폰과는 다른, 프린트가 필요없는 EASY 쿠폰.</p>
                         <p>클릭 한번후 해당 업체에 보여주면 끝!</p>

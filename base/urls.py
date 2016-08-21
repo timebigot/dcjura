@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^search$', views.search, name='search_redirect'),
     url(r'^search/(?P<query>[^\/]+)/$', views.search, name='search'),
     url(r'^numbers$', views.numbers, name='numbers'),
+    url(r'^contact$', views.contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
