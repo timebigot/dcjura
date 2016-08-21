@@ -44,7 +44,7 @@ ga('send', 'pageview');
                     </div>
                     <div class="col-md-6">
                         <div class="pull-xs-right nav-menu">
-                            <form action="{% url 'search_redirect' %}" method="POST" class="hidden-xs-down" id="formSearch">{% csrf_token %}
+                            <form action="{% url 'search_redirect' %}" method="POST" class="hidden-sm-down" id="formSearch">{% csrf_token %}
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search DCjura" name="query">
                                     <span class="input-group-btn">
@@ -59,20 +59,14 @@ ga('send', 'pageview');
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <nav class="nav nav-inline">
+            <ul class="nav nav-pills nav-justified" align="center">
                 {% get_cats as cats %}
                 {% for cat in cats %}
-                {% if cat.coupon_set.first and cat.coupon_set.first.exp_date >= today or cat.coupon_set.first.exp_date = None %}
-                <a class="nav-link" href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a>
+                {% if cat.coupon_set.first and cat.coupon_set.first.exp_date >= today or cat.coupon_set.first.exp_date == None %}
+                <li role="presentation"><a href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a></li>
                 {% endif %}
                 {% endfor %}
-                <div class="pull-xs-right hidden-xs-down">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
-                    <a class="nav-link" href="mailto:contact.dcjura@gmail.com">Contact</a>
-                </div>
-            </nav>
-        </div>
+            </ul>
         <hr>
 
         {% block message %}

@@ -7,3 +7,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Business)
 admin.site.register(Coupon)
+admin.site.register(Query)
+admin.site.register(View)

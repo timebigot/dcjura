@@ -81,24 +81,7 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect('/')
-"""
 
-def coupon(request, url_code):
-    coupon = Coupon.objects.get(url_code=url_code)
-    category = coupon.category
-    return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
-
-def category(request, category):
-    category = Category.objects.get(slug=category)
-    coupons = Coupon.objects.filter(category=category).order_by('-pk')
-    all_coupons = Coupon.objects.all().order_by('-pk')
-    return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': datetime.date.today()})
-
-def modal(request, url_code):
-    coupon = Coupon.objects.get(url_code=url_code)
-    return render(request, 'modal.html', {'coupon':coupon})
-
-"""
 def contact(request):
     if request.method == 'POST':
         subject = request.POST.get('subject', '')
@@ -120,15 +103,37 @@ def contact(request):
     else:
         return render(request, 'contact.html')
 """
+
+def coupon(request, url_code):
+    coupon = Coupon.objects.get(url_code=url_code)
+    category = coupon.category
+    view = View(coupon=coupon, view_time=datetime.datetime.now())
+    view.save()
+    return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
+
+def category(request, category):
+    category = Category.objects.get(slug=category)
+    coupons = Coupon.objects.filter(category=category).order_by('-pk')
+    all_coupons = Coupon.objects.all().order_by('-pk')
+    return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': datetime.date.today()})
+
+def modal(request, url_code):
+    coupon = Coupon.objects.get(url_code=url_code)
+    view = View(coupon=coupon, view_time=datetime.datetime.now())
+    view.save()
+    return render(request, 'modal.html', {'coupon':coupon})
+
 def search(request, query=''):
     if request.method == 'POST':
         query = request.POST.get('query')
         return redirect('/search/' + query)
     else:
         if not query:
-            title = 'None'
-            return HttpResponse('No results')
+            empty_results = True
         else:
+            query_log = Query(query=query, query_time=datetime.datetime.now())
+            query_log.save()
+
             c = Coupon.objects
             coupons = c.filter(
                 Q(title__icontains=query) |

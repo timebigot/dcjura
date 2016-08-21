@@ -20,6 +20,7 @@ body {
     color: #fff;
     font-family: 'Exo 2', sans-serif;
     font-size: 39px;
+    padding-left: 0px;
 }
 .nav-menu {
     margin-top: 15px;
@@ -48,6 +49,17 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+}
+.nav-justified > li > a {
+    padding: 0px;
+    margin-bottom: 0;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: transparent;
+}
 
 /*card*/
 .media {
@@ -59,15 +71,17 @@ body {
 }
 .media-overlay {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 2rem;
+    top: 85px;
+    right: 0px;
+    left: 32px;
     font-size: 13px;
     color: white;
-    height: 200px;
-    margin-top: 50px;
+}
+.media-overlay>p {
+    margin: 0px;
+}
+.media-expire {
+    text-shadow: 1px 1px #333;
 }
 .media-body {
     padding-right: 10px;

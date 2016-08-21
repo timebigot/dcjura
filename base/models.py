@@ -37,3 +37,17 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.title
+
+class Query(models.Model):
+    query = models.CharField(max_length=50)
+    query_time = models.DateTimeField(blank=True)
+
+    def __str__(self):
+        return self.query
+
+class View(models.Model):
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+    view_time = models.DateTimeField()
+
+    def __str__(self):
+        return '%s - %s' % (self.coupon, self.view_time)

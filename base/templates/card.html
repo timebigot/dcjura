@@ -2,22 +2,22 @@
 {% load tags %}
 {% today_tag as today %}
 {% if coupon.exp_date >= today or coupon.exp_date == None %}
-    <div class="card-coupon">
-        <div class="media">
-            <a class="media-left media-middle" href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
-                <img class="media-object" src="{{ coupon.cover.url }}" alt="Generic placeholder image">
-                {% if coupon.exp_date %}
-                <div class="media-overlay">
-                    <p>Exp: {{ coupon.exp_date|date:"m.d.y" }}</p>
-                </div>
-                {% endif %}
-            </a>
-            <div class="media-body">
-                <a href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
-                    <p class="media-heading card-title">{{ coupon.title }}</p>
-                </a>
-                <p class="card-business text-muted">{{ coupon.business.name }}</p>
+<div class="card-coupon">
+    <div class="media">
+        <a class="media-left media-middle" href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
+            <img class="media-object" src="{{ coupon.cover.url }}" alt="{{ coupon.title }}">
+            {% if coupon.exp_date %}
+            <div class="media-overlay">
+                <p class="media-expire">Exp: {{ coupon.exp_date|date:"m.d.y" }}</p>
             </div>
+            {% endif %}
+        </a>
+        <div class="media-body">
+            <a href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
+                <p class="media-heading card-title">{{ coupon.title }}</p>
+            </a>
+            <p class="card-business text-muted">{{ coupon.business.name }}</p>
         </div>
-    </div><!--.card-coupon-->
+    </div>
+</div><!--.card-coupon-->
 {% endif %}

@@ -18,5 +18,5 @@ $('#couponModal').on('show.bs.modal', function (event) {
 });
 $("#buttonSearch").click(function() {
     $("#buttonSearch .fa-search, #buttonSearch .fa-close").toggleClass("fa-search fa-close");
-    $("#formSearch").toggleClass("visible-xs-down hidden-xs-down")
+    $("#formSearch").toggleClass("visible-sm-down hidden-sm-down")
 });
