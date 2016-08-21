@@ -107,7 +107,10 @@ def contact(request):
 def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     category = coupon.category
-    view = View(coupon=coupon, view_time=datetime.datetime.now())
+    if not request.user.is_superuser:
+        view = View(coupon=coupon, view_time=datetime.datetime.now())
+    else:
+        view = View(coupon=coupon, view_time=datetime.datetime.now(), is_admin=True)
     view.save()
     return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
 
@@ -119,7 +122,10 @@ def category(request, category):
 
 def modal(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
-    view = View(coupon=coupon, view_time=datetime.datetime.now())
+    if not request.user.is_superuser:
+        view = View(coupon=coupon, view_time=datetime.datetime.now())
+    else:
+        view = View(coupon=coupon, view_time=datetime.datetime.now(), is_admin=True)
     view.save()
     return render(request, 'modal.html', {'coupon':coupon})
 
@@ -131,7 +137,10 @@ def search(request, query=''):
         if not query:
             empty_results = True
         else:
-            query_log = Query(query=query, query_time=datetime.datetime.now())
+            if not request.user.is_superuser:
+                query_log = Query(query=query, query_time=datetime.datetime.now())
+            else:
+                query_log = Query(query=query, query_time=datetime.datetime.now(), is_admin=True)
             query_log.save()
 
             c = Coupon.objects
