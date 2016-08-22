@@ -17,7 +17,7 @@ class Category(models.Model):
 
 class Business(models.Model):
     name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15)
+    phone = models.CharField(max_length=15, blank=True)
     email = models.EmailField(max_length=100, blank=True)
     owner = models.CharField(max_length=30, blank=True)
     address = models.CharField(max_length=100, blank=True)
@@ -34,6 +34,7 @@ class Coupon(models.Model):
     exp_date = models.DateField(blank=True, null=True)
     url_code = models.CharField(max_length=7)
     cover = models.FileField(upload_to='cover/')
+    link = models.CharField(max_length=200, blank=True)
     is_void = models.BooleanField(default=False)
 
     def __str__(self):

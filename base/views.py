@@ -11,6 +11,9 @@ from django.contrib import messages
 from base.models import *
 import datetime
 from django.utils import timezone
+from bs4 import BeautifulSoup
+import urllib.request
+from base.helper import url_coder
 
 today = datetime.date.today()
 
@@ -130,21 +133,26 @@ def category(request, category):
     all_coupons = Coupon.objects.all().order_by('-pk')
     return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': today})
 
-def modal(request, url_code):
+def process(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
+
     if not request.user.is_superuser:
         view = View(coupon=coupon)
     else:
         view = View(coupon=coupon, is_admin=True)
     view.save()
-    return render(request, 'modal.html', {'coupon':coupon})
+
+    if coupon.category.eng_name == 'Online':
+        return redirect(coupon.link)
+    else:
+        return render(request, 'process.html', {'coupon':coupon})
 
 def search(request, query=''):
     if request.method == 'POST':
+        query = request.POST.get('query')
         if not query:
             return redirect('/')
         else:
-            query = request.POST.get('query')
             return redirect('/search/' + query)
     else:
         if not query:
@@ -170,3 +178,46 @@ def search(request, query=''):
                 empty_results = False
     all_coupons = Coupon.objects.all().order_by('-pk')
     return render(request, 'index.html', {'coupons': coupons, 'search': query, 'all_coupons': all_coupons, 'empty_results': empty_results})
+
+def scraper(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            url = request.POST.get('url')
+            title = request.POST.get('title')
+
+            domain = 'http://www.couponpx.com'
+            con = urllib.request.urlopen(url).read()
+            soup = BeautifulSoup(con, 'html.parser')
+
+            sel = '#bd > div.rd.rd_nav_style2.clear > div.rd_body.clear > div.xe_content.rd_gallery > a'
+
+            anchor = soup.select(sel)[0]
+            link = anchor['href']
+
+            img = anchor.find('img')['src']
+            cover_link = domain + img
+
+            business = soup.find('td', class_='store').text
+
+            url_code = url_coder(7)
+
+            cover = thumb_maker(cover_link)
+
+            category = Category.objects.get(eng_name='Online')
+            biz = Business(name=business)
+            biz.save()
+            new = Coupon(title=title, link=link, business=biz, category=category, url_code=url_code)
+
+            if soup.find('td', class_='expires'):
+                expires = soup.find('td', class_='expires').text
+                exp_date = datetime.datetime.strptime(expires, '%Y-%m-%d')
+                new.exp_date = exp_date
+            else:
+                expires = None
+
+            new.save()
+            return HttpResponse(link + '<br>' + cover + '<br>' + business + '<br>' + expires)
+        else:
+            return render(request, 'scraper.html')
+    else:
+        return redirect('/')
