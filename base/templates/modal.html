@@ -14,19 +14,19 @@
         {% endif %}
         </div>
         <div class="modal-body">
-            {% include 'card.html' %}
-        </div>
-
-        {% if coupon.exp_date %}
-        <div class="modal-body">
-            <div class="card">
+            <div class="card-coupon">
                 <div class="card-block">
-                    <h4>Info</h4>
-                    <p class="coupon-exp-date">Expires: {{ coupon.exp_date|date:"m/d/Y" }}</p>
+                    <div align="center">
+                    <h4>{{ coupon.title }}</h4>
+                    <p>{{ coupon.business.name }}</p>
+                    <img class="img-rounded" src="{% static 'img/qrcode.png' %}">
+                    {% if coupon.exp_date %}
+                    <p>Ends: {{ coupon.exp_date|date:"m/d/Y" }}</p>
+                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
-        {% endif %}
 
         <div class="modal-body">
             <div class="card">
