@@ -17,12 +17,19 @@
             <div class="card-coupon">
                 <div class="card-block">
                     <div align="center">
-                    <h4>{{ coupon.title }}</h4>
-                    <p class="text-muted">{{ coupon.business.name }}</p>
-                    <img class="img-rounded" src="{% static 'img/qrcode.png' %}">
-                    {% if coupon.exp_date %}
-                    <p>Ends: {{ coupon.exp_date|date:"m/d/Y" }}</p>
-                    {% endif %}
+                        <h4>{{ coupon.title }}</h4>
+                        <p class="text-muted">{{ coupon.business.name }}</p>
+                        <img class="img-rounded" src="{% static 'img/qrcode.png' %}">
+                        {% if coupon.exp_date %}
+                        <p>Ends: {{ coupon.exp_date|date:"m/d/Y" }}</p>
+                        {% endif %}
+                        <div class="card">
+                            <div class="card-block">
+                                <h5>How to Use</h5>
+                                <p>기존 쿠폰과는 다른, 프린트가 필요없는 EASY 쿠폰.</p>
+                                <p>클릭 한번후 해당 업체에 보여주면 끝!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
