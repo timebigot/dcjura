@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
+from datetime import datetime
 
 class Category(models.Model):
     eng_name = models.CharField(max_length=20)
@@ -40,7 +41,7 @@ class Coupon(models.Model):
 
 class Query(models.Model):
     query = models.CharField(max_length=50)
-    query_time = models.DateTimeField(blank=True)
+    query_time = models.DateTimeField(default=datetime.now, blank=True)
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
@@ -48,7 +49,7 @@ class Query(models.Model):
 
 class View(models.Model):
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
-    view_time = models.DateTimeField()
+    view_time = models.DateTimeField(default=datetime.now, blank=True)
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):

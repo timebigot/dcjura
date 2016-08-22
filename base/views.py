@@ -13,7 +13,6 @@ import datetime
 from django.utils import timezone
 
 today = datetime.date.today()
-now = datetime.datetime.now()
 
 def index(request):
     all_coupons = Coupon.objects.all().order_by('-pk')
@@ -119,9 +118,9 @@ def coupon(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     category = coupon.category
     if not request.user.is_superuser:
-        view = View(coupon=coupon, view_time=now)
+        view = View(coupon=coupon)
     else:
-        view = View(coupon=coupon, view_time=now, is_admin=True)
+        view = View(coupon=coupon, is_admin=True)
     view.save()
     return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
 
@@ -129,14 +128,14 @@ def category(request, category):
     category = Category.objects.get(slug=category)
     coupons = Coupon.objects.filter(category=category).order_by('-pk')
     all_coupons = Coupon.objects.all().order_by('-pk')
-    return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': datetime.date.today()})
+    return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': today})
 
 def modal(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
     if not request.user.is_superuser:
-        view = View(coupon=coupon, view_time=now)
+        view = View(coupon=coupon)
     else:
-        view = View(coupon=coupon, view_time=now, is_admin=True)
+        view = View(coupon=coupon, is_admin=True)
     view.save()
     return render(request, 'modal.html', {'coupon':coupon})
 
@@ -149,9 +148,9 @@ def search(request, query=''):
             empty_results = True
         else:
             if not request.user.is_superuser:
-                query_log = Query(query=query, query_time=now)
+                query_log = Query(query=query)
             else:
-                query_log = Query(query=query, query_time=now, is_admin=True)
+                query_log = Query(query=query, is_admin=True)
             query_log.save()
 
             c = Coupon.objects
