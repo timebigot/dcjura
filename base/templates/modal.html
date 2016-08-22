@@ -18,7 +18,7 @@
                 <div class="card-block">
                     <div align="center">
                     <h4>{{ coupon.title }}</h4>
-                    <p>{{ coupon.business.name }}</p>
+                    <p class="text-muted">{{ coupon.business.name }}</p>
                     <img class="img-rounded" src="{% static 'img/qrcode.png' %}">
                     {% if coupon.exp_date %}
                     <p>Ends: {{ coupon.exp_date|date:"m/d/Y" }}</p>

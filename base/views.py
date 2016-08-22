@@ -141,8 +141,11 @@ def modal(request, url_code):
 
 def search(request, query=''):
     if request.method == 'POST':
-        query = request.POST.get('query')
-        return redirect('/search/' + query)
+        if not query:
+            return redirect('/')
+        else:
+            query = request.POST.get('query')
+            return redirect('/search/' + query)
     else:
         if not query:
             empty_results = True
