@@ -5,7 +5,7 @@ $('#couponModal').on('show.bs.modal', function (event) {
     var content = modal.find('#couponModalContent')
 
     $.ajax({
-        url: '/modal/' + urlcode,
+        url: '/process/' + urlcode,
         dataType: 'html',
         success: function(data) {
             content.replaceWith(data)
