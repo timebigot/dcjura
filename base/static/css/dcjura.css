@@ -3,8 +3,10 @@ html {
     min-height: 100%;
 }
 body {
-    margin: 0 0 100px;
+    margin: 0 0 115px;
 }
+
+/* header */
 .header {
     margin-bottom: 15px;
     border-radius: 0px;
@@ -178,6 +180,7 @@ body {
     margin-top: 5px;
 }
 
+/* footer */
 footer {
     background-color: #ECECEC;
     padding-top: 15px;
@@ -186,6 +189,7 @@ footer {
     bottom: 0;
     height: 100px;
     width: 100%;
+    margin-top: 5px;
 }
 .footer-menu>a {
     padding: 5px;
