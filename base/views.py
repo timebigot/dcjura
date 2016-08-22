@@ -13,7 +13,7 @@ import datetime
 from django.utils import timezone
 
 today = datetime.date.today()
-now = timezone.localtime(timezone.now())
+now = datetime.datetime.now()
 
 def index(request):
     all_coupons = Coupon.objects.all().order_by('-pk')
