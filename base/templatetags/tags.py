@@ -13,8 +13,7 @@ def gmaps():
 
 @register.simple_tag
 def get_cats():
-    cats = Category.objects.all().exclude(eng_name='Online').order_by('kor_name')
-    online = Category.objects.get(eng_name='Online')
+    cats = Category.objects.all().order_by('kor_name')
     return cats
 
 @register.simple_tag

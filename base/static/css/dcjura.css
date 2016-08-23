@@ -83,6 +83,21 @@ body {
     -webkit-justify-content: space-between; 
     justify-content: space-between; 
 }  
+.tag {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+.tag-danger {
+    background-color: #d9534f;
+}
 
 /*card*/
 .media {
@@ -96,15 +111,16 @@ body {
     position: absolute;
     top: 85px;
     right: 0px;
-    left: 32px;
+    left: 28px;
     font-size: 13px;
     color: white;
 }
 .media-overlay>p {
     margin: 0px;
-}
-.media-expire {
-    text-shadow: 1px 1px #333;
+    width: 90px;
+    background-color: black;
+    opacity: 0.6;
+    text-align: center;
 }
 .media-body {
     padding-right: 10px;

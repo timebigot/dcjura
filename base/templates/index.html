@@ -15,7 +15,7 @@ Home
 
 {% block content %}
 
-{% if category or search %}
+{% if category or search and category.eng_name != 'Online' %}
 <div class="container">
     {% if category %}
     <h5>{{ category.kor_name }}</h5>
@@ -24,9 +24,7 @@ Home
     {% endif %}
     <div class="row">
         {% for coupon in coupons %}
-        <div class="col-xs-12 col-md-6 col-lg-4">
             {% include 'card.html' %}
-        </div><!--.col-->
         {% endfor %}
     </div><!--.row-->
 </div><!--.container-->
@@ -42,9 +40,7 @@ Home
     <h5>All Coupons</h5>
     <div class="row">
         {% for coupon in all_coupons %}
-        <div class="col-xs-12 col-md-6 col-lg-4">
             {% include 'card.html' %}
-        </div><!--.col-->
         {% endfor %}
     </div><!--.row-->
 </div><!--.container-->

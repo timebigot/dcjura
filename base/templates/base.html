@@ -68,7 +68,14 @@ ga('send', 'pageview');
             <ul class="flex-container flex-space">
                 {% get_cats as cats %}
                 {% for cat in cats %}
-                <li role="presentation"><a href="{% url 'category' category=cat.slug %}">{{ cat.kor_name }}</a></li>
+                <li role="presentation">
+                    <a href="{% url 'category' category=cat.slug %}">
+                        {{ cat.kor_name }}
+                        {% if cat.eng_name == 'Online'%}
+                        <span class="tag tag-danger">N</span>
+                        {% endif %}
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>

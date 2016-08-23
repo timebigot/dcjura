@@ -13,18 +13,19 @@ import datetime
 from django.utils import timezone
 from bs4 import BeautifulSoup
 import urllib.request
-from base.helper import url_coder
+from base.helper import *
 
 today = datetime.date.today()
 
 def index(request):
-    all_coupons = Coupon.objects.all().order_by('-pk')
+    cat_online = Category.objects.get(eng_name='Online')
+    all_coupons = Coupon.objects.all().exclude(category=cat_online).order_by('-pk')
     return render(request, 'index.html', {'all_coupons': all_coupons})
 
 def numbers(request):
     if request.user.is_superuser:
         views = View.objects.filter(is_admin=False).order_by('-pk')
-        queries = Query.objects.all().order_by('-pk')
+        queries = Query.objects.filter(is_admin=False).order_by('-pk')
         return render(request, 'numbers.html', {'views':views, 'queries':queries})
     else:
         return redirect('/')
@@ -130,7 +131,8 @@ def coupon(request, url_code):
 def category(request, category):
     category = Category.objects.get(slug=category)
     coupons = Coupon.objects.filter(category=category).order_by('-pk')
-    all_coupons = Coupon.objects.all().order_by('-pk')
+    cat_online = Category.objects.get(eng_name='Online')
+    all_coupons = Coupon.objects.all().exclude(category=cat_online).order_by('-pk')
     return render(request, 'index.html', {'coupons': coupons, 'all_coupons': all_coupons, 'category': category, 'today': today})
 
 def process(request, url_code):
@@ -204,19 +206,26 @@ def scraper(request):
             cover = thumb_maker(cover_link)
 
             category = Category.objects.get(eng_name='Online')
-            biz = Business(name=business)
-            biz.save()
-            new = Coupon(title=title, link=link, business=biz, category=category, url_code=url_code)
+            try:
+                biz = Business.objects.filter(name=business)
+            except Business.DoesNotExist:
+                biz = Business(name=business)
+                biz.save()
+            try:
+                Coupon.objects.get(title=title, link=link)
+            except Coupon.DoesNotExist:
+                new = Coupon(title=title, link=link, business=biz, category=category, url_code=url_code, cover=cover)
+            else:
+                messages.error(request, 'This coupon already exists')
+                return render(request, 'scraper.html')
 
             if soup.find('td', class_='expires'):
                 expires = soup.find('td', class_='expires').text
                 exp_date = datetime.datetime.strptime(expires, '%Y-%m-%d')
                 new.exp_date = exp_date
-            else:
-                expires = None
 
             new.save()
-            return HttpResponse(link + '<br>' + cover + '<br>' + business + '<br>' + expires)
+            return redirect('/category/online')
         else:
             return render(request, 'scraper.html')
     else:
