@@ -207,7 +207,7 @@ def scraper(request):
 
             category = Category.objects.get(eng_name='Online')
             try:
-                biz = Business.objects.get(name=business).first()
+                biz = Business.objects.get(name=business)
             except Business.DoesNotExist:
                 biz = Business(name=business)
                 biz.save()

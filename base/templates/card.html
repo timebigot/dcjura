@@ -6,7 +6,7 @@
     <div class="card-coupon">
         <div class="media">
             {% if coupon.category.eng_name == 'Online' %}
-            <a class="media-left media-middle" href="{{ coupon.link }}">
+            <a class="media-left media-middle" href="{% url 'process' url_code=coupon.url_code %}">
             {% else %}
             <a class="media-left media-middle" href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
             {% endif %}
@@ -19,7 +19,7 @@
             </a>
             <div class="media-body">
                 {% if coupon.category.eng_name == 'Online' %}
-                <a href="{{ coupon.link }}">
+                <a href="{% url 'process' url_code=coupon.url_code %}">
                     <p class="media-heading card-title">{{ coupon.title }}</p>
                 </a>
                 {% else %}
