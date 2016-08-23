@@ -207,10 +207,11 @@ def scraper(request):
 
             category = Category.objects.get(eng_name='Online')
             try:
-                biz = Business.objects.filter(name=business)
+                biz = Business.objects.get(name=business).first()
             except Business.DoesNotExist:
                 biz = Business(name=business)
                 biz.save()
+
             try:
                 Coupon.objects.get(title=title, link=link)
             except Coupon.DoesNotExist:
