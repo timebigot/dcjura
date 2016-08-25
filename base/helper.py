@@ -18,22 +18,28 @@ def url_coder(size=7, chars=string.ascii_uppercase + string.ascii_lowercase + st
         else:
             continue
 
-def thumb_maker(url):
-    image = urllib.request.urlopen(url)
-    img_ext = os.path.splitext(url)[1].lower()
+def thumb_maker(image, is_url):
+    if is_url:
+        image = urllib.request.urlopen(image)
+
+    img_ext = '.png'
     img_filename = url_coder(11) + img_ext
     img_path = os.path.join('cover/' + img_filename)
 
     thumb = Image.open(image)
     W = thumb.size[0] / 2
     H = thumb.size[1] / 2
+    print(W)
+    print(H)
 
     if W > H:
         thumb = thumb.crop((W-H, H-H, W+H, H+H))
-        thumb = thumb.resize((350,350))
+        thumb = thumb.resize((200,200))
     elif W < H:
         thumb = thumb.crop((W-W, H-W, W+W, H+W))
-        thumb = thumb.resize((350,350))
+        thumb = thumb.resize((200,200))
+    elif W == H:
+        thumb = thumb.resize((200,200))
 
     f_thumb = default_storage.open(img_path, 'w')
     thumb.save(f_thumb, 'png')

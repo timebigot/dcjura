@@ -5,11 +5,7 @@
 <div class="col-xs-12 col-md-6 col-lg-4">
     <div class="card-coupon">
         <div class="media">
-            {% if coupon.category.eng_name == 'Online' %}
-            <a class="media-left media-middle" href="{% url 'process' url_code=coupon.url_code %}">
-            {% else %}
-            <a class="media-left media-middle" href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
-            {% endif %}
+            <a class="media-left media-middle" href="{% url 'coupon' url_code=coupon.url_code %}"{% if not coupon.category.eng_name == 'Online' %}data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}"{% endif %}>
                 <img class="media-object" src="{{ coupon.cover.url }}" alt="{{ coupon.title }}">
                 {% if coupon.exp_date %}
                 <div class="media-overlay">
@@ -18,15 +14,9 @@
                 {% endif %}
             </a>
             <div class="media-body">
-                {% if coupon.category.eng_name == 'Online' %}
-                <a href="{% url 'process' url_code=coupon.url_code %}">
+                <a href="{% url 'coupon' url_code=coupon.url_code %}"{% if not coupon.category.eng_name == 'Online' %}data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}"{% endif %}>
                     <p class="media-heading card-title">{{ coupon.title }}</p>
                 </a>
-                {% else %}
-                <a href="{% url 'coupon' url_code=coupon.url_code %}" data-toggle="modal" data-target="#couponModal" data-urlcode="{{ coupon.url_code }}">
-                    <p class="media-heading card-title">{{ coupon.title }}</p>
-                </a>
-                {% endif %}
                 <p class="card-business text-muted">{{ coupon.business.name }}</p>
             </div>
         </div>

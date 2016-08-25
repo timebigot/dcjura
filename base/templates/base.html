@@ -32,6 +32,25 @@ ga('send', 'pageview');
     </head>
 
     <body>
+        <nav class="navbar navbar-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>ADMIN</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pull-xs-right">
+                            <nav class="nav nav-inline">
+                                <a class="nav-link" href="/admin">Admin</a>
+                                <a class="nav-link" href="{% url 'numbers' %}">Numbers</a>
+                                <a class="nav-link" href="{% url 'scraper' %}">Scraper</a>
+                                <a class="nav-link" href="{% url 'adminpost' %}">Post</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
         <nav class="navbar navbar-dark bg-danger header">
             <div class="container">
                 <div class="row">
@@ -40,9 +59,9 @@ ga('send', 'pageview');
                     </div>
                     <div class="col-xs-6 hidden-md-up">
                         <div class="pull-xs-right nav-menu">
-                        <button type="button" class="btn btn-transparent" id="buttonSearch">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
+                            <button type="button" class="btn btn-transparent" id="buttonSearch">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 hidden-sm-down" id="formSearch">

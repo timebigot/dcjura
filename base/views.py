@@ -126,7 +126,11 @@ def coupon(request, url_code):
     else:
         view = View(coupon=coupon, is_admin=True)
     view.save()
-    return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
+
+    if coupon.category.eng_name == 'Online':
+        return redirect(coupon.link)
+    else:
+        return render(request, 'coupon.html', {'coupon': coupon, 'share_page': True})
 
 def category(request, category):
     category = Category.objects.get(slug=category)
@@ -137,17 +141,7 @@ def category(request, category):
 
 def process(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
-
-    if not request.user.is_superuser:
-        view = View(coupon=coupon)
-    else:
-        view = View(coupon=coupon, is_admin=True)
-    view.save()
-
-    if coupon.category.eng_name == 'Online':
-        return redirect(coupon.link)
-    else:
-        return render(request, 'process.html', {'coupon':coupon})
+    return render(request, 'process.html', {'coupon':coupon})
 
 def search(request, query=''):
     if request.method == 'POST':
@@ -203,7 +197,7 @@ def scraper(request):
 
             url_code = url_coder(7)
 
-            cover = thumb_maker(cover_link)
+            cover = thumb_maker(cover_link, is_url=True)
 
             category = Category.objects.get(eng_name='Online')
             try:
@@ -229,5 +223,51 @@ def scraper(request):
             return redirect('/category/online')
         else:
             return render(request, 'scraper.html')
+    else:
+        return redirect('/')
+
+def adminpost(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            address = request.POST.get('address')
+            phone = request.POST.get('phone')
+
+            try:
+                Business.objects.get(name=name)
+            except Business.DoesNotExist:
+                logo = request.FILES['logo']
+                logo = thumb_maker(logo, is_url=False)
+                business = Business(name=name, address=address, phone=phone, logo=logo)
+                business.save()
+            else:
+                business = Business.objects.get(name=name)
+
+
+            title = request.POST.get('title')
+            category = request.POST.get('category')
+            category = Category.objects.get(slug=category)
+            cover = request.FILES['cover']
+            cover = thumb_maker(cover, is_url=False)
+            url_code = url_coder(7)
+
+            try:
+                Coupon.objects.get(title=title, business=business)
+            except Coupon.DoesNotExist:
+                exp_date = request.POST.get('exp_date')
+                if exp_date:
+                    exp_date = datetime.datetime.strptime(exp_date, '%Y-%m-%d')
+                    coupon = Coupon(title=title, category=category, exp_date=exp_date, url_code=url_code, cover=cover, business=business)
+                else:
+                    coupon = Coupon(title=title, category=category, url_code=url_code, cover=cover, business=business)
+                coupon.save()
+                messages.success(request, 'Posted coupon succesfully')
+                return redirect('/')
+            else:
+                messages.error(request, 'This coupon already exists')
+                return redirect('/adminpost')
+        else:
+            categories = Category.objects.all().order_by('kor_name').exclude(eng_name='Online')
+            return render(request, 'adminpost.html', {'categories':categories})
     else:
         return redirect('/')

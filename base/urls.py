@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^numbers$', views.numbers, name='numbers'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^scraper$', views.scraper, name='scraper'),
+    url(r'^adminpost$', views.adminpost, name='adminpost'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

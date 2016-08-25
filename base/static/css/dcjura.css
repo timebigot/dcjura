@@ -5,6 +5,9 @@ html {
 body {
     margin: 0 0 115px;
 }
+select.form-control:not([size]):not([multiple]) {
+    height: 2.5rem;
+}
 
 /* header */
 .header {
@@ -109,7 +112,7 @@ body {
 }
 .media-overlay {
     position: absolute;
-    top: 85px;
+    top: 84px;
     right: 0px;
     left: 28px;
     font-size: 13px;
