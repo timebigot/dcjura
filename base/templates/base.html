@@ -32,6 +32,7 @@ ga('send', 'pageview');
     </head>
 
     <body>
+        {% if user.request.is_admin %}
         <nav class="navbar navbar-dark">
             <div class="container">
                 <div class="row">
@@ -51,6 +52,7 @@ ga('send', 'pageview');
                 </div>
             </div>
         </nav>
+        {% endif %}
         <nav class="navbar navbar-dark bg-danger header">
             <div class="container">
                 <div class="row">
