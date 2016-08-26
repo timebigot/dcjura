@@ -141,6 +141,11 @@ def category(request, category):
 
 def process(request, url_code):
     coupon = Coupon.objects.get(url_code=url_code)
+    if not request.user.is_superuser:
+        view = View(coupon=coupon)
+    else:
+        view = View(coupon=coupon, is_admin=True)
+    view.save()
     return render(request, 'process.html', {'coupon':coupon})
 
 def search(request, query=''):
